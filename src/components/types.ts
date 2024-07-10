@@ -1,3 +1,11 @@
 export interface SearchInputProps {
-  handleClick: () => void;
+  handleClick: VoidFunction;
+}
+
+export interface CardProps {
+  imgSrc: string;
+  label: string;
+  price: string;
+  submitButton: VoidFunction;
+  detailButton: VoidFunction;
 }
