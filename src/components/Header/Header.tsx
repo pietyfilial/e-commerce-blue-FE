@@ -22,17 +22,18 @@ const Header = () => {
         {/* Right */}
 
         <div className='col-span-2 flex justify-center items-center'>
-          <FaRegUser size={'35px'} />
-
-          <div className='ml-2'>
-            <p>Login / Register</p>
-            <div className='flex items-center'>
-              <p>Account</p>
-              <VscTriangleDown className='pt-1' />
+          <div className='ml-10 flex items-center'>
+            <FaRegUser size={'35px'} />
+            <div>
+              <p>Login / Register</p>
+              <div className='flex items-center'>
+                <p>Account</p>
+                <VscTriangleDown className='pt-1' />
+              </div>
             </div>
           </div>
 
-          <div className='flex items-end ml-10'>
+          <div className='flex items-end ml-20'>
             <IoCartOutline size={'35px'} />
             <p>Cart</p>
           </div>
