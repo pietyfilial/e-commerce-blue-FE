@@ -14,10 +14,10 @@ const Card: React.FC<CardProps> = ({
         alt={label}
       />
 
-      <div className='absolute top-[48%] space-y-4 px-2'>
-        <label className='font-bold text-lg'>{label}</label>
-        <p className='font-bold text-3xl'>{price}</p>
-      </div>
+      <label className='font-bold text-lg absolute top-[48%] px-2'>
+        {label}
+      </label>
+      <p className='font-bold text-3xl absolute top-[65%]'>{price}</p>
 
       <div className='absolute bottom-[5%] space-y-2'>
         <button

@@ -2,16 +2,19 @@ import { FaRegUser } from 'react-icons/fa6';
 import { VscTriangleDown } from 'react-icons/vsc';
 import { IoCartOutline } from 'react-icons/io5';
 import SearchInput from './SearchInput/SearchInput';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <>
-      <div className='grid grid-cols-7 w-full bg-[#001489] px-[120px] py-[20px] text-white items-center'>
+      <div className='grid grid-cols-7 w-full bg-[#001489] px-[120px] py-[20px] text-white items-center fixed z-50 top-0'>
         {/* Left */}
 
-        <div className='col-span-1 text-[18px] font-bold uppercase'>
-          Blue Cheetah
-        </div>
+        <Link to={'/'}>
+          <div className='col-span-1 text-[18px] font-bold uppercase'>
+            BlueCheetah
+          </div>
+        </Link>
 
         {/* Middle */}
 

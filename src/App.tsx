@@ -6,8 +6,7 @@ import Footer from './components/Footer';
 function App() {
   const location = useLocation();
 
-  const noHeaderFooterRoutes = ['*'];
-  console.log(noHeaderFooterRoutes);
+  const noHeaderFooterRoutes = ['/login', '/register'];
 
   const shouldShowHeaderAndFooter = !noHeaderFooterRoutes.some((route) =>
     route === '*'
