@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import Card from '../../components/common/Card';
 import Slider from '../../components/Slider/Slider';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const categories = [
   'Television',
@@ -7,6 +9,7 @@ const categories = [
   'Refrigerator',
   'Washing machine',
   'Computer',
+  'Tablet',
 ];
 
 const products = [
@@ -82,13 +85,41 @@ const products = [
     img: 'https://images.mobileshop.eu/1634654634/product-medium/nintendo-switch-oled-blue-red.jpg',
     price: '$345.00',
   },
+  {
+    id: 13,
+    label: 'Samsung Galaxy Buds2 Pro R510 Graphite Grey',
+    img: 'https://images.mobileshop.eu/1660473801/product-medium/samsung-galaxy-buds2-pro-r510-graphite-grey.jpg',
+    price: '$142.00',
+  },
+  {
+    id: 14,
+    label: 'Samsung Galaxy Tab S9 Ultra 5G 256GB 12GB RAM SM-X916 Beige',
+    img: 'https://images.mobileshop.eu/1699001855/product-medium/samsung-galaxy-tab-s9-ultra-5g-256gb-12gb-ram-sm-x916-beige.jpg',
+    price: '$1034.00',
+  },
+  {
+    id: 15,
+    label: 'Apple iPad Air 11 (2024) WiFi 512GB 8GB RAM Blue',
+    img: 'https://images.mobileshop.eu/1719497382/product-medium/apple-ipad-air-11-2024-wifi-512gb-8gb-ram-blue.jpg',
+    price: '$999.00',
+  },
 ];
 
 const HomePage = () => {
+  const [quantity, setQuantity] = useState<number>(4);
+
+  const showMoreProducts = () => {
+    setQuantity(products.length);
+  };
+
+  const showLessProducts = () => {
+    setQuantity(4);
+  };
+
   return (
     <>
-      <div className='mx-[120px] space-y-3'>
-        <div className='flex justify-between border-b border-gray-300 h-10 items-center'>
+      <div className='mx-[120px] space-y-3 mt-24'>
+        <div className='flex justify-around border-b border-gray-300 h-10 items-center'>
           {categories.map((item, index) => {
             return (
               <p
@@ -106,13 +137,16 @@ const HomePage = () => {
 
         <h1 className='pt-10'>Products</h1>
 
-        <div className='grid grid-cols-4 justify-items-center gap-y-10 py-4 border-black border-t-2'>
-          {products.map((item, index) => {
-            return (
-              <>
-                <div
+        <div className='flex flex-col items-center border-black border-t-2'>
+          <div className='grid grid-cols-4 gap-y-10 py-4 gap-x-16'>
+            <AnimatePresence>
+              {products.slice(0, quantity).map((item, index) => (
+                <motion.div
                   key={index}
-                  className='col-span-1'>
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 50 }}
+                  transition={{ duration: 0.5 }}>
                   <Card
                     label={item.label}
                     imgSrc={item.img}
@@ -120,10 +154,25 @@ const HomePage = () => {
                     detailButton={() => {}}
                     submitButton={() => {}}
                   />
-                </div>
-              </>
-            );
-          })}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+          {quantity < products.length && (
+            <button
+              onClick={showMoreProducts}
+              className='mt-4 text-[#001489] border-[2px] border-[#001489] px-[80px] py-3 font-bold rounded-lg hover:bg-[#001489] hover:text-white transition-colors duration-200 ease-in-out'>
+              See more
+            </button>
+          )}
+
+          {quantity === products.length && (
+            <button
+              onClick={showLessProducts}
+              className='mt-4 text-[#001489] border-[2px] border-[#001489] px-[80px] py-3 font-bold rounded-lg hover:bg-[#001489] hover:text-white transition-colors duration-200 ease-in-out'>
+              See less
+            </button>
+          )}
         </div>
       </div>
     </>
